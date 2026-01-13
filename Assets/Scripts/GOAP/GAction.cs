@@ -21,21 +21,21 @@ public class GAction : MonoBehaviour
     public Dictionary<string, bool> effects;
 
     [SerializeField]
-    GameObject target;
+    protected GameObject target;
 
     [SerializeField]
     string targetTag;
     public float cost = 1.0f;
-    float duration = 0.0f;
+    public float duration = 0.0f;
 
     public bool running = false;
 
-    NavMeshAgent agent;
+    protected GAgent agent;
 
     void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
-        if (target == null)
+        agent = GetComponent<GAgent>();
+        if (target == null && targetTag != null && targetTag != "")
         {
             target = GameObject.FindGameObjectWithTag(targetTag);
         }
@@ -59,7 +59,17 @@ public class GAction : MonoBehaviour
 
     public void Act()
     {
-        agent.SetDestination(target.transform.position);
+        agent.agent.SetDestination(target.transform.position);
         running = true;
+    }
+
+    public virtual bool PrePerform()
+    {
+        return true;
+    }
+
+    public virtual bool PostPerform()
+    {
+        return true;
     }
 }

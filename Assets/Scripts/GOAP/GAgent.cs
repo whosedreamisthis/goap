@@ -16,13 +16,15 @@ public class SubGoal
 
 public class GAgent : MonoBehaviour
 {
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
     List<GAction> actions = new List<GAction>();
     protected List<SubGoal> goals = new List<SubGoal>();
     GAction currentAction;
+    SubGoal currentGoal;
 
     GPlanner planner;
     Queue<GAction> actionQueue;
+    public GInventory inventory;
 
     void Awake()
     {
@@ -31,6 +33,19 @@ public class GAgent : MonoBehaviour
         foreach (GAction a in inActions)
         {
             actions.Add(a);
+        }
+    }
+
+    void CompleteCurrentAction()
+    {
+        currentAction.PostPerform();
+        currentAction.running = false;
+        currentAction = null;
+        if (actionQueue != null && actionQueue.Count == 0)
+        {
+            actionQueue = null;
+
+            goals.Remove(currentGoal);
         }
     }
 
@@ -44,12 +59,7 @@ public class GAgent : MonoBehaviour
         {
             if (!agent.pathPending && agent.remainingDistance < 2)
             {
-                currentAction.running = false;
-                currentAction = null;
-                if (actionQueue != null && actionQueue.Count == 0)
-                {
-                    actionQueue = null;
-                }
+                Invoke("CompleteCurrentAction", currentAction.duration);
             }
         }
         if (planner == null || actionQueue == null)
@@ -60,6 +70,7 @@ public class GAgent : MonoBehaviour
                 actionQueue = planner.Plan(actions, sg.goals, null);
                 if (actionQueue != null)
                 {
+                    currentGoal = sg;
                     break;
                 }
             }
@@ -71,7 +82,14 @@ public class GAgent : MonoBehaviour
         )
         {
             currentAction = actionQueue.Dequeue();
-            currentAction.Act();
+            bool success = currentAction.PrePerform();
+            if (!success)
+            {
+                planner = null;
+                actionQueue = null;
+            }
+            else
+                currentAction.Act();
         }
     }
 }
