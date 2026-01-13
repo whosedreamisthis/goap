@@ -46,7 +46,8 @@ public class GAgent : MonoBehaviour
         {
             actionQueue = null;
 
-            goals.Remove(currentGoal);
+            if (currentGoal.remove)
+                goals.Remove(currentGoal);
         }
     }
 
