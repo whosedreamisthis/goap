@@ -2,9 +2,14 @@ using UnityEngine;
 
 public class GetTreated : GAction
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start() { }
+    public override bool PrePerform()
+    {
+        target = GetComponent<Patient>().assignedCubicle;
+        return target != null;
+    }
 
-    // Update is called once per frame
-    void Update() { }
+    public override bool PostPerform()
+    {
+        return true;
+    }
 }

@@ -2,9 +2,14 @@ using UnityEngine;
 
 public class GoToWaitingRoom : GAction
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start() { }
+    public override bool PrePerform()
+    {
+        return true;
+    }
 
-    // Update is called once per frame
-    void Update() { }
+    public override bool PostPerform()
+    {
+        GWorld.Instance.AddWaitingPatient(agent.gameObject);
+        return true;
+    }
 }

@@ -2064,6 +2064,10 @@ PrefabInstance:
       propertyPath: effectsList.Array.data[0].value
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7635130070992538008, guid: d36c43225f9391e4c8810c98eb7ef85e, type: 3}
+      propertyPath: m_Speed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7880970886039044016, guid: d36c43225f9391e4c8810c98eb7ef85e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.91
@@ -2190,6 +2194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Patient
   agent: {fileID: 0}
+  assignedCubicle: {fileID: 0}
 --- !u!114 &1164510344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2202,8 +2207,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb2fcf60c3246354cbeb718dcaf42deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GetTreated
-  preconditionsList: []
-  effectsList: []
+  preconditionsList:
+  - key: isFetched
+    value: 0
+  effectsList:
+  - key: isTreated
+    value: 0
   target: {fileID: 0}
   targetTag: 
   cost: 1
@@ -4100,6 +4109,8 @@ MonoBehaviour:
   preconditionsList:
   - key: freeCubicle
     value: 1
+  - key: patientWaiting
+    value: 1
   effectsList:
   - key: hasPatient
     value: 1
@@ -4144,6 +4155,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Nurse
   agent: {fileID: 0}
+--- !u!136 &1593214028
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593214020}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.01
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1629294990
 GameObject:
   m_ObjectHideFlags: 0
@@ -4531,6 +4565,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1022711090020267853, guid: 51e437be22296b340954bf6591a60065, type: 3}
+      propertyPath: m_Speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -1022711090020267853, guid: 51e437be22296b340954bf6591a60065, type: 3}
+      propertyPath: m_BaseOffset
+      value: 1.02
+      objectReference: {fileID: 0}
     - target: {fileID: 177407082141715887, guid: 51e437be22296b340954bf6591a60065, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.65
@@ -4581,13 +4623,16 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2618188073631541129, guid: 51e437be22296b340954bf6591a60065, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1593214028}
+    - targetCorrespondingSourceObject: {fileID: 2618188073631541129, guid: 51e437be22296b340954bf6591a60065, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1593214025}
+    - targetCorrespondingSourceObject: {fileID: 2618188073631541129, guid: 51e437be22296b340954bf6591a60065, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1593214023}
     - targetCorrespondingSourceObject: {fileID: 2618188073631541129, guid: 51e437be22296b340954bf6591a60065, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1593214024}
-    - targetCorrespondingSourceObject: {fileID: 2618188073631541129, guid: 51e437be22296b340954bf6591a60065, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1593214025}
   m_SourcePrefab: {fileID: 100100000, guid: 51e437be22296b340954bf6591a60065, type: 3}
 --- !u!1 &1999376859
 GameObject:

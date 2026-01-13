@@ -19,12 +19,13 @@ public class GAgent : MonoBehaviour
     public NavMeshAgent agent;
     List<GAction> actions = new List<GAction>();
     protected List<SubGoal> goals = new List<SubGoal>();
+    public Dictionary<string, bool> beliefs = new Dictionary<string, bool>();
     GAction currentAction;
     SubGoal currentGoal;
 
     GPlanner planner;
     Queue<GAction> actionQueue;
-    public GInventory inventory;
+    public GInventory inventory = new GInventory();
 
     void Awake()
     {
@@ -67,7 +68,7 @@ public class GAgent : MonoBehaviour
             planner = new GPlanner();
             foreach (SubGoal sg in goals)
             {
-                actionQueue = planner.Plan(actions, sg.goals, null);
+                actionQueue = planner.Plan(actions, sg.goals, beliefs);
                 if (actionQueue != null)
                 {
                     currentGoal = sg;

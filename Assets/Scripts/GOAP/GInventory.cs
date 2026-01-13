@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GInventory
 {
-    List<GameObject> items;
+    List<GameObject> items = new List<GameObject>();
 
     public GameObject FindItemByTag(string tagToFind)
     {

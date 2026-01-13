@@ -4,12 +4,11 @@ public class GetPatient : GAction
 {
     public override bool PrePerform()
     {
-        Patient patient = GWorld.Instance.GetNextPatient();
-        if (patient == null)
+        target = GWorld.Instance.GetNextPatient();
+        if (target == null)
         {
             return false;
         }
-        target = patient.gameObject;
 
         GameObject cubicle = GWorld.Instance.ReserveCubicle();
         if (cubicle == null)
@@ -23,6 +22,10 @@ public class GetPatient : GAction
 
     public override bool PostPerform()
     {
+        Patient patient = target.GetComponent<Patient>();
+        patient.beliefs.Add("isFetched", true);
+        patient.assignedCubicle = agent.inventory.FindItemByTag("Cubicle");
+
         return true;
     }
 }

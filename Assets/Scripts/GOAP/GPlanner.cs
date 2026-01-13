@@ -20,14 +20,26 @@ public class Node
 
 public class GPlanner
 {
+    Dictionary<string, bool> MergeStates(Dictionary<string, bool> s1, Dictionary<string, bool> s2)
+    {
+        Dictionary<string, bool> merged = new Dictionary<string, bool>(s1);
+
+        foreach (KeyValuePair<string, bool> kv in s2)
+        {
+            merged.Add(kv.Key, kv.Value);
+        }
+        return merged;
+    }
+
     public Queue<GAction> Plan(
         List<GAction> actions,
         Dictionary<string, bool> goals,
-        Dictionary<string, int> state
+        Dictionary<string, bool> beliefs
     )
     {
         List<Node> leaves = new List<Node>();
-        Node root = new Node(null, 0, GWorld.Instance.GetState(), null);
+        Dictionary<string, bool> states = MergeStates(GWorld.Instance.GetState(), beliefs);
+        Node root = new Node(null, 0, states, null);
         if (BuildGraph(root, leaves, actions, goals))
         {
             Node cheapest = null;

@@ -4,7 +4,7 @@ public class GoToCubicle : GAction
 {
     public override bool PrePerform()
     {
-        GameObject target = agent.inventory.FindItemByTag("Cubicle");
+        target = agent.inventory.FindItemByTag("Cubicle");
         return target != null;
     }
 

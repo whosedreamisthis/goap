@@ -6,7 +6,7 @@ public class GWorld
 {
     static GWorld instance;
     private static Dictionary<string, bool> state;
-    public static Queue<Patient> patients = new Queue<Patient>();
+    public static Queue<GameObject> patients = new Queue<GameObject>();
     public static Queue<GameObject> cubicles = new Queue<GameObject>();
 
     public static GWorld Instance
@@ -26,18 +26,28 @@ public class GWorld
         {
             cubicles.Enqueue(cubicleGOs[i]);
         }
+        state.Add("freeCubicle", true);
+        state.Add("patientWaiting", false);
     }
 
-    public void AddWaitingPatient(Patient p)
+    public void AddWaitingPatient(GameObject p)
     {
         patients.Enqueue(p);
+        if (!state["patientWaiting"])
+        {
+            state["patientWaiting"] = true;
+        }
     }
 
-    public Patient GetNextPatient()
+    public GameObject GetNextPatient()
     {
         if (patients.Count <= 0)
         {
             return null;
+        }
+        if (patients.Count <= 1)
+        {
+            state["patientWaiting"] = false;
         }
         return patients.Dequeue();
     }
