@@ -1116,6 +1116,10 @@ GameObject:
   m_Component:
   - component: {fileID: 177407082141715887}
   - component: {fileID: -1022711090020267853}
+  - component: {fileID: 2377833902241689255}
+  - component: {fileID: 6773627248039982618}
+  - component: {fileID: 6264499584176320322}
+  - component: {fileID: 153533697716270317}
   m_Layer: 0
   m_Name: Nurse
   m_TagString: Untagged
@@ -1149,7 +1153,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1158,9 +1162,93 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: 1.02
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &2377833902241689255
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2618188073631541129}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.01
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6773627248039982618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2618188073631541129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a71bea224a36f549b95a457917cd88d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Nurse
+  agent: {fileID: 0}
+--- !u!114 &6264499584176320322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2618188073631541129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c33a97f812fe747ad01ace0e5e5633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GetPatient
+  preconditionsList:
+  - key: freeCubicle
+    value: 1
+  - key: patientWaiting
+    value: 1
+  effectsList:
+  - key: hasPatient
+    value: 1
+  target: {fileID: 0}
+  targetTag: 
+  cost: 1
+  duration: 0
+  running: 0
+--- !u!114 &153533697716270317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2618188073631541129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 599c1a6a911d2e742af68c393a30acd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoToCubicle
+  preconditionsList:
+  - key: hasPatient
+    value: 1
+  effectsList:
+  - key: treatPatient
+    value: 1
+  target: {fileID: 0}
+  targetTag: 
+  cost: 1
+  duration: 0
+  running: 0
 --- !u!1 &2629889911763255196
 GameObject:
   m_ObjectHideFlags: 0

@@ -2989,7 +2989,11 @@ GameObject:
   - component: {fileID: 7635130070992538008}
   - component: {fileID: 2976748234070123699}
   - component: {fileID: 7864285355557821704}
-  - component: {fileID: 7137045480950051107}
+  - component: {fileID: 7757888738568992592}
+  - component: {fileID: 1635720369510909858}
+  - component: {fileID: 6875442103982117984}
+  - component: {fileID: 8528198654811576960}
+  - component: {fileID: 1059906946297226018}
   m_Layer: 0
   m_Name: Patient
   m_TagString: Untagged
@@ -3023,7 +3027,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -3047,8 +3051,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1220b348b02fdb42be40424776a7eec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoToHospital
+  preconditionsList: []
+  effectsList:
+  - key: hasArrived
+    value: 1
   target: {fileID: 0}
   targetTag: Door
+  cost: 1
+  duration: 0
   running: 0
 --- !u!136 &7864285355557821704
 CapsuleCollider:
@@ -3073,7 +3083,7 @@ CapsuleCollider:
   m_Height: 2.14
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7137045480950051107
+--- !u!114 &7757888738568992592
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3082,9 +3092,103 @@ MonoBehaviour:
   m_GameObject: {fileID: 7881807149238628900}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f44f471a7ae95bb498dfb8b45e76b369, type: 3}
+  m_Script: {fileID: 11500000, guid: c54b8e8edc1ab2441b805735ac0b7a98, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GAgent
+  m_EditorClassIdentifier: Assembly-CSharp::Register
+  preconditionsList:
+  - key: hasArrived
+    value: 1
+  effectsList:
+  - key: hasRegistered
+    value: 1
+  target: {fileID: 0}
+  targetTag: Reception
+  cost: 1
+  duration: 0
+  running: 0
+--- !u!114 &1635720369510909858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7881807149238628900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e93bd5cebabc94b8ed2e4bf9f5a300, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoToWaitingRoom
+  preconditionsList:
+  - key: hasRegistered
+    value: 1
+  effectsList:
+  - key: isWaiting
+    value: 1
+  target: {fileID: 0}
+  targetTag: WaitingArea
+  cost: 1
+  duration: 0
+  running: 0
+--- !u!114 &6875442103982117984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7881807149238628900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6350056ff28b76c448902ac01b1d47bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Patient
+  agent: {fileID: 0}
+  assignedCubicle: {fileID: 0}
+--- !u!114 &8528198654811576960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7881807149238628900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb2fcf60c3246354cbeb718dcaf42deb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GetTreated
+  preconditionsList:
+  - key: isFetched
+    value: 1
+  effectsList:
+  - key: isTreated
+    value: 1
+  target: {fileID: 0}
+  targetTag: 
+  cost: 1
+  duration: 0
+  running: 0
+--- !u!114 &1059906946297226018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7881807149238628900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6482acf2bf1f49a46a23769a8f8eac55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoHome
+  preconditionsList:
+  - key: isTreated
+    value: 1
+  effectsList:
+  - key: isHome
+    value: 1
+  target: {fileID: 0}
+  targetTag: Home
+  cost: 1
+  duration: 0
+  running: 0
 --- !u!1 &7927236269272520591
 GameObject:
   m_ObjectHideFlags: 0
