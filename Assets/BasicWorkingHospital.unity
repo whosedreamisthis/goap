@@ -2209,10 +2209,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GetTreated
   preconditionsList:
   - key: isFetched
-    value: 0
+    value: 1
   effectsList:
   - key: isTreated
-    value: 0
+    value: 1
   target: {fileID: 0}
   targetTag: 
   cost: 1
