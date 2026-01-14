@@ -2994,6 +2994,7 @@ GameObject:
   - component: {fileID: 6875442103982117984}
   - component: {fileID: 8528198654811576960}
   - component: {fileID: 1059906946297226018}
+  - component: {fileID: 4212602034967573757}
   m_Layer: 0
   m_Name: Patient
   m_TagString: Untagged
@@ -3104,7 +3105,7 @@ MonoBehaviour:
   target: {fileID: 0}
   targetTag: Reception
   cost: 1
-  duration: 0
+  duration: 3
   running: 0
 --- !u!114 &1635720369510909858
 MonoBehaviour:
@@ -3142,6 +3143,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Patient
   agent: {fileID: 0}
+  manualMove: 0
+  assignedNurse: {fileID: 0}
   assignedCubicle: {fileID: 0}
 --- !u!114 &8528198654811576960
 MonoBehaviour:
@@ -3159,7 +3162,7 @@ MonoBehaviour:
   - key: isFetched
     value: 1
   effectsList:
-  - key: isTreated
+  - key: nurseFinishedEscort
     value: 1
   target: {fileID: 0}
   targetTag: 
@@ -3188,6 +3191,29 @@ MonoBehaviour:
   targetTag: Home
   cost: 1
   duration: 0
+  running: 0
+--- !u!114 &4212602034967573757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7881807149238628900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a8ea1303b42dc3489e534a92fcda225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SitAtCubicle
+  preconditionsList:
+  - key: nurseFinishedEscort
+    value: 1
+  effectsList:
+  - key: isTreated
+    value: 1
+  target: {fileID: 0}
+  targetTag: 
+  cost: 1
+  duration: 5
   running: 0
 --- !u!1 &7927236269272520591
 GameObject:

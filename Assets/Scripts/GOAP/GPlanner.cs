@@ -121,7 +121,8 @@ public class GPlanner
         Dictionary<string, bool> newState = new Dictionary<string, bool>(currentState);
         foreach (KeyValuePair<string, bool> kv in effects)
         {
-            newState.Add(kv.Key, kv.Value);
+            if (!newState.ContainsKey(kv.Key))
+                newState.Add(kv.Key, kv.Value);
         }
         return newState;
     }

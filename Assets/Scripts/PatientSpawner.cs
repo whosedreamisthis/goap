@@ -16,6 +16,6 @@ public class PatientSpawner : MonoBehaviour
         GameObject g = Instantiate(patientPrefab, transform.position, Quaternion.identity);
         g.transform.parent = transform;
 
-        Invoke("Spawn", Random.Range(2, 8));
+        //  Invoke("Spawn", Random.Range(2, 8));
     }
 }

@@ -4,7 +4,8 @@ public class GetTreated : GAction
 {
     public override bool PrePerform()
     {
-        target = GetComponent<Patient>().assignedCubicle;
+        target = (agent as Patient).assignedCubicle;
+
         return target != null;
     }
 

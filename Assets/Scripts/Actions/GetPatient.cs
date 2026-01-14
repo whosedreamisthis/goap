@@ -10,6 +10,9 @@ public class GetPatient : GAction
             return false;
         }
 
+        Nurse nurse = agent as Nurse;
+        nurse.assignedPatient = target.GetComponent<Patient>();
+
         GameObject cubicle = GWorld.Instance.ReserveCubicle();
         if (cubicle == null)
         {
@@ -25,6 +28,7 @@ public class GetPatient : GAction
         Patient patient = target.GetComponent<Patient>();
         patient.beliefs.Add("isFetched", true);
         patient.assignedCubicle = agent.inventory.FindItemByTag("Cubicle");
+        patient.assignedNurse = gameObject;
 
         return true;
     }

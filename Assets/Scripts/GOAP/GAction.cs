@@ -21,7 +21,7 @@ public class GAction : MonoBehaviour
     public Dictionary<string, bool> effects;
 
     [SerializeField]
-    protected GameObject target;
+    public GameObject target;
 
     [SerializeField]
     string targetTag;
@@ -52,12 +52,15 @@ public class GAction : MonoBehaviour
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start() { }
+    protected virtual void Start()
+    {
+        agent.manualMove = false;
+    }
 
     // Update is called once per frame
     void Update() { }
 
-    public void Act()
+    public virtual void Act()
     {
         agent.agent.SetDestination(target.transform.position);
         running = true;
@@ -71,5 +74,10 @@ public class GAction : MonoBehaviour
     public virtual bool PostPerform()
     {
         return true;
+    }
+
+    public virtual bool Perform()
+    {
+        return !agent.agent.pathPending && agent.agent.remainingDistance < 2;
     }
 }

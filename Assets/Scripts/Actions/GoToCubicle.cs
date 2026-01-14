@@ -14,6 +14,8 @@ public class GoToCubicle : GAction
         if (cubicle == null)
             return false;
         GWorld.Instance.ReleaseCubicle(cubicle);
+        Nurse nurse = agent as Nurse;
+        nurse.assignedPatient.beliefs.Add("nurseFinishedEscort", true);
         return true;
     }
 }

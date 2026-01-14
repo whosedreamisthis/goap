@@ -4,6 +4,7 @@ using UnityEngine.AI;
 
 public class Patient : GAgent
 {
+    public GameObject assignedNurse;
     public GameObject assignedCubicle;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

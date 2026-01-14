@@ -22,6 +22,7 @@ public class GAgent : MonoBehaviour
     public Dictionary<string, bool> beliefs = new Dictionary<string, bool>();
     GAction currentAction;
     SubGoal currentGoal;
+    public bool manualMove = false;
 
     GPlanner planner;
     Queue<GAction> actionQueue;
@@ -40,7 +41,7 @@ public class GAgent : MonoBehaviour
     void CompleteCurrentAction()
     {
         currentAction.PostPerform();
-        currentAction.running = false;
+
         currentAction = null;
         if (actionQueue != null && actionQueue.Count == 0)
         {
@@ -57,10 +58,13 @@ public class GAgent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentAction != null)
+        if (currentAction != null && currentAction.running)
         {
-            if (!agent.pathPending && agent.remainingDistance < 2)
+            bool finished = currentAction.Perform();
+
+            if (finished)
             {
+                currentAction.running = false;
                 Invoke("CompleteCurrentAction", currentAction.duration);
             }
         }
@@ -77,11 +81,7 @@ public class GAgent : MonoBehaviour
                 }
             }
         }
-        if (
-            actionQueue != null
-            && actionQueue.Count > 0
-            && (currentAction == null || !currentAction.running)
-        )
+        if (actionQueue != null && actionQueue.Count > 0 && (currentAction == null))
         {
             currentAction = actionQueue.Dequeue();
             bool success = currentAction.PrePerform();
