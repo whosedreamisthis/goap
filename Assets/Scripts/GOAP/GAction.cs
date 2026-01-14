@@ -78,6 +78,6 @@ public class GAction : MonoBehaviour
 
     public virtual bool Perform()
     {
-        return !agent.agent.pathPending && agent.agent.remainingDistance < 2;
+        return !agent.agent.pathPending && agent.agent.remainingDistance < 3;
     }
 }

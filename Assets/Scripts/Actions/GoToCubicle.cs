@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class GoToCubicle : GAction
 {
+    bool signalSent = false;
+
     public override bool PrePerform()
     {
+        signalSent = false;
         target = agent.inventory.FindItemByTag("Cubicle");
         return target != null;
     }
@@ -14,8 +17,22 @@ public class GoToCubicle : GAction
         if (cubicle == null)
             return false;
         GWorld.Instance.ReleaseCubicle(cubicle);
-        Nurse nurse = agent as Nurse;
-        nurse.assignedPatient.beliefs.Add("nurseFinishedEscort", true);
+
         return true;
+    }
+
+    public override bool Perform()
+    {
+        if (!agent.agent.pathPending && agent.agent.remainingDistance < 3)
+        {
+            if (!signalSent)
+            {
+                Nurse nurse = agent as Nurse;
+                nurse.assignedPatient.beliefs.Add("nurseFinishedEscort", true);
+                signalSent = true;
+            }
+            return true;
+        }
+        return false;
     }
 }
