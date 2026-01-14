@@ -248,7 +248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 153533697716270317, guid: 51e437be22296b340954bf6591a60065, type: 3}
       propertyPath: duration
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 177407082141715887, guid: 51e437be22296b340954bf6591a60065, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3972,7 +3972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 153533697716270317, guid: 51e437be22296b340954bf6591a60065, type: 3}
       propertyPath: duration
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 177407082141715887, guid: 51e437be22296b340954bf6591a60065, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4220,7 +4220,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &1592830990
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4657,7 +4657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 153533697716270317, guid: 51e437be22296b340954bf6591a60065, type: 3}
       propertyPath: duration
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 177407082141715887, guid: 51e437be22296b340954bf6591a60065, type: 3}
       propertyPath: m_LocalPosition.x
